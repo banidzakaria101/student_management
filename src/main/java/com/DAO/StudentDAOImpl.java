@@ -4,40 +4,36 @@ import com.beans.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public class StudentDAOImpl implements StudentDAO{
-    private static ArrayList<Student> students = new ArrayList<Student>();
-
+public class StudentDAOImpl implements StudentDAO {
+    private static List<Student> students = new ArrayList<>();
 
     @Override
-    public void AddStudent(Student student){
+    public void addStudent(Student student) {
         students.add(student);
     }
 
     @Override
-    public ArrayList<Student> getStudents() {
+    public List<Student> getStudents() {
         System.out.println(students);
         return students;
     }
 
     @Override
-    public void UpdateStudent(Long id, String name, String registrationNumber, String email) {
-        for(Student student : students){
-            if(student.getId().equals(id)){
+    public void updateStudent(Long id, String name, String registrationNumber, String email) {
+        for (Student student : students) {
+            if (student.getId().equals(id)) {
                 student.setName(name);
-                student.setEmail(email);
                 student.setRegistrationNumber(registrationNumber);
+                student.setEmail(email);
             }
         }
-
     }
 
     @Override
-    public void DeleteStudent(Long id) {
+    public void deleteStudent(Long id) {
         students.removeIf(student -> student.getId().equals(id));
-
     }
-
-
 }
